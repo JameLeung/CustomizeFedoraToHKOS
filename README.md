@@ -56,6 +56,10 @@ sudo dnf install kdm
 systemctl disable gdm
 systemctl enable kdm
 
+flatpak install flathub org.gnome.Extensions
+flatpak run org.gnome.Extensions
+sudo dnf install grub-custom*
+grub-customizer
 
 
 
