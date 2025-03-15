@@ -61,5 +61,8 @@ flatpak run org.gnome.Extensions
 sudo dnf install grub-custom*
 grub-customizer
 
+dnf copr enable nunodias/whatsapp-for-linux
+dnf install whatsapp-for-linux
+
 
 
