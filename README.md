@@ -80,6 +80,8 @@ xrandr --output DVI-I-1 "1920x1080_50.00"
 
 sudo chmod +x /etc/gdm/Xsetup
 
+#install latest driver
+sudo dnf install xorg-x11-drv-intel
 
 
 
