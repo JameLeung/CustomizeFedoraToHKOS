@@ -54,7 +54,7 @@ Environment
 dnf install @kde-desktop-environment
 sudo dnf install kdm
 systemctl disable gdm
-systemctl enable kdm
+systemctl enable sddm
 
 flatpak install flathub org.gnome.Extensions
 flatpak run org.gnome.Extensions
@@ -68,6 +68,9 @@ install set-gdm-wallpaper
 remind the script need to change to support 
 gnome-shell-light.css
 gnome-shell-dark.css
+
+#plymouth
+sudo plymouth-set-default-theme -R "hexa_retro"
 
 
 j@nbjal03:~$ cat /etc/gdm/Xsetup
@@ -83,6 +86,11 @@ sudo chmod +x /etc/gdm/Xsetup
 #install latest driver
 sudo dnf install xorg-x11-drv-intel
 
+#copy video into 
+/usr/share/videos/hongkong
 
+#to add video into screensaver
+install 
+plasma-smart-video-wallpaper-reborn
 
 
