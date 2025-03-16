@@ -64,5 +64,21 @@ grub-customizer
 dnf copr enable nunodias/whatsapp-for-linux
 dnf install whatsapp-for-linux
 
+install set-gdm-wallpaper 
+remind the script need to change to support 
+gnome-shell-light.css
+gnome-shell-dark.css
+
+
+j@nbjal03:~$ cat /etc/gdm/Xsetup
+xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+xrandr --addmode eDP-1 "1920x1080_60.00"
+xrandr --output eDP-1 --mode "1920x1080_60.00"
+xrandr --newmode "1920x1080_50.00"  141.50  1920 2032 2232 2544  1080 1083 1088 1114 -hsync +vsync
+xrandr --addmode DVI-I-1 "1920x1080_50.00"
+xrandr --output DVI-I-1 "1920x1080_50.00"
+
+
+
 
 
