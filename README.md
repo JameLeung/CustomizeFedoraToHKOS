@@ -78,6 +78,8 @@ xrandr --newmode "1920x1080_50.00"  141.50  1920 2032 2232 2544  1080 1083 1088 
 xrandr --addmode DVI-I-1 "1920x1080_50.00"
 xrandr --output DVI-I-1 "1920x1080_50.00"
 
+sudo chmod +x /etc/gdm/Xsetup
+
 
 
 
