@@ -93,4 +93,10 @@ sudo dnf install xorg-x11-drv-intel
 install 
 plasma-smart-video-wallpaper-reborn
 
+for the SDDM video modification, found the QtMultimedia need to do quite a lot of works
+Need to change the Main.Qml to make it comptible
+the source is uploaded for reference
+
+
+
 
