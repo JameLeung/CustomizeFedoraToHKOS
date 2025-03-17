@@ -194,6 +194,77 @@ public:
 Q_DECLARE_WAYLAND_EXTENSION(RelativePointerManagerV1, QtWayland::zwp_relative_pointer_manager_v1)
 
 
+
+
+#Facial Recognition
+Enable repository
+dnf copr enable principis/howdy
+
+Install howdy
+dnf --refresh install howdy
+
+Configure your camera
+Find all video devices:
+
+$ ls /dev/video*
+
+Configure howdy:
+
+sudo howdy config
+# or use your favorite text editor
+sudo vim /lib64/security/howdy/config.ini
+
+Change device_path to your camera.
+
+device_path = /dev/video2
+
+You can test if you've chosen the correct camera by running howdy test and see if the IR emitters turn on.
+
+Configure PAM
+Configure howdy for sudo
+Add the following line to the top of /etc/pam.d/sudo
+
+auth       sufficient   pam_python.so /lib64/security/howdy/pam.py
+
+Configure howdy for kde lockscreen
+Modify /etc/pam.d/kde so it looks like this:
+
+$ cat /etc/pam.d/kde
+auth     [success=done ignore=ignore default=bad] pam_selinux_permit.so
+auth        sufficient      pam_python.so /lib64/security/howdy/pam.py
+auth        substack      password-auth
+...
+
+Your lockscreen might not be running Howdy as root, which prevents Howdy from running. Setting the execution bit so every user can run Howdy might be the solution
+
+chmod o+x /lib64/security/howdy/dlib-data
+
+Configure howdy for login (sddm)
+Modify /etc/pam.d/sddm so it looks like this:
+
+$ cat sddm
+auth     [success=done ignore=ignore default=bad] pam_selinux_permit.so
+auth        sufficient   pam_python.so /lib64/security/howdy/pam.py
+auth        substack      password-auth
+...
+
+See below to apply SELinux and permission fixes.
+
+Configure howdy for login (gdm)
+Modify /etc/pam.d/gdm-password so it looks like this:
+
+$ cat gdm-password
+auth     [success=done ignore=ignore default=bad] pam_selinux_permit.so
+auth        sufficient    pam_python.so /lib64/security/howdy/pam.py
+auth        substack      password-auth
+
+See below to apply SELinux and permission fixes.
+
+Permission issues
+Your lockscreen might not be running Howdy as root, which prevents Howdy from running. Setting the execution bit so every user can run access dlib-data should solve this:
+
+chmod o+x /lib64/security/howdy/dlib-data
+
  
 cd ~/Downloads/kdeconnect-kde/build
 rm -rf *
