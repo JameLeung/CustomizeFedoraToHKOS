@@ -165,9 +165,36 @@ sudo dnf install qt6-qtmultimedia-devel
 sudo dnf install kf6-kcrash-devel kf6-ki18n-devel kf6-kconfigwidgets-devel kf6-kdbusaddons-devel kf6-kiconthemes-devel kf6-knotifications-devel kf6-kio-devel kf6-kcmutils-devel kf6-solid-devel kf6-kirigami-devel kf6-kpeople-devel kf6-kguiaddons-devel kf6-kdoctools-devel
 sudo dnf install qt6-qtconnectivity-devel
 sudo dnf install libfakekey-devel
+sudo dnf install qt6-qtbase-devel qt6-qtwayland-devel wayland-devel wayland-protocols-devel
 
 ln -s /usr/lib64/qt6/libexec/moc /usr/bin/moc
 
+in CMakeLists.txt
+# Include the private directory
+include_directories(/usr/include/qt6/QtGui/6.8.2/QtGui/private)
+
+change coding for 
+ vi ~/Downloads/kdeconnect-kde/declarativeplugin/pointerlockerwayland.cpp
+#include <QtWaylandClient/QWaylandClientExtension>  // Ensure this is included
+
+class PointerConstraints : public QWaylandClientExtensionTemplate<PointerConstraints, 1>  // Version 1 for zwp_pointer_constraints_v1
+{
+    Q_OBJECT
+public:
+    PointerConstraints() : QWaylandClientExtensionTemplate<PointerConstraints, 1>(1) {}
+};
+Q_DECLARE_WAYLAND_EXTENSION(PointerConstraints, QtWayland::zwp_pointer_constraints_v1)
+
+class RelativePointerManagerV1 : public QWaylandClientExtensionTemplate<RelativePointerManagerV1, 1>  // Version 1 for zwp_relative_pointer_manager_v1
+{
+    Q_OBJECT
+public:
+    RelativePointerManagerV1() : QWaylandClientExtensionTemplate<RelativePointerManagerV1, 1>(1) {}
+};
+Q_DECLARE_WAYLAND_EXTENSION(RelativePointerManagerV1, QtWayland::zwp_relative_pointer_manager_v1)
+
+
+ 
 cd ~/Downloads/kdeconnect-kde/build
 rm -rf *
 cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
