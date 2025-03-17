@@ -271,3 +271,7 @@ rm -rf *
 cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
 make -j$(nproc)
 sudo make install
+
+install the intel video driver
+
+sudo dnf install libva libva-utils intel-media-driver intel-gpu-tools
