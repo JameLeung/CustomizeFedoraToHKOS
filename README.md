@@ -123,3 +123,45 @@ LOGO=hkos
 HOME_URL="https://www.linkedin.com/in/jame-l-a2320323/"
 
 sudo chmod 644 /usr/share/icons/hicolor/128x128/apps/hkos.svg
+
+##kdeconnect not working
+very difficult
+
+it is only binded in the IPV6 and need to recompile
+sudo dnf groupinstall "Development Tools"
+sudo dnf install cmake qt5-qtbase-devel kf5-kdbusaddons-devel kf5-ki18n-devel kf5-knotifications-devel git extra-cmake-modules gcc-c++
+git clone https://invent.kde.org/network/kdeconnect-kde.git
+cd kdeconnect-kde
+nano core/backends/lan/lanlinkprovider.cpp
+
+ const QHostAddress bindAddress = m_testMode ? QHostAddress::LocalHost : QHostAddress::AnyIP;
+ to
+const QHostAddress bindAddress = m_testMode ? QHostAddress::LocalHost : QHostAddress::AnyIPv4;
+sudo dnf install kf6-kirigami-addons-devel
+sudo dnf copr enable @kde-frameworks/kde-frameworks-6
+sudo dnf install qt6-qtbase-devel cmake extra-cmake-modules pulseaudio-libs-devel kf6-kcoreaddons-devel
+
+git clone https://invent.kde.org/libraries/pulseaudio-qt.git
+cd pulseaudio-qt
+mkdir build && cd build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make -j$(nproc)
+sudo make install
+
+sudo dnf install qt6-qtwayland-devel
+ sudo ln -s /usr/lib64/qt6/libexec/qtwaylandscanner /usr/bin/qtwaylandscanner
+ sudo chmod 755 /usr/bin/qtwaylandscanner 
+
+sudo dnf install wayland-devel
+
+sudo dnf install wayland-protocols-devel
+sudo dnf install dbus-devel
+sudo dnf install qt6-qtbase-devel kf6-kwindowsystem-devel kf6-kdbusaddons-devel cmake extra-cmake-modules
+git clone https://invent.kde.org/frameworks/kstatusnotifieritem.git
+cd kstatusnotifieritem
+
+sudo dnf install kf6-kstatusnotifieritem-devel
+sudo dnf install qt6-qtmultimedia-devel
+sudo dnf install kf6-kcrash-devel kf6-ki18n-devel kf6-kconfigwidgets-devel kf6-kdbusaddons-devel kf6-kiconthemes-devel kf6-knotifications-devel kf6-kio-devel kf6-kcmutils-devel kf6-solid-devel kf6-kirigami-devel kf6-kpeople-devel kf6-kguiaddons-devel kf6-kdoctools-devel
+sudo dnf install qt6-qtconnectivity-devel
+sudo dnf install libfakekey-devel
