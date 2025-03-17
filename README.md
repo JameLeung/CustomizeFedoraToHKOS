@@ -165,3 +165,11 @@ sudo dnf install qt6-qtmultimedia-devel
 sudo dnf install kf6-kcrash-devel kf6-ki18n-devel kf6-kconfigwidgets-devel kf6-kdbusaddons-devel kf6-kiconthemes-devel kf6-knotifications-devel kf6-kio-devel kf6-kcmutils-devel kf6-solid-devel kf6-kirigami-devel kf6-kpeople-devel kf6-kguiaddons-devel kf6-kdoctools-devel
 sudo dnf install qt6-qtconnectivity-devel
 sudo dnf install libfakekey-devel
+
+ln -s /usr/lib64/qt6/libexec/moc /usr/bin/moc
+
+cd ~/Downloads/kdeconnect-kde/build
+rm -rf *
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+make -j$(nproc)
+sudo make install
