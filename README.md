@@ -275,3 +275,11 @@ sudo make install
 install the intel video driver
 
 sudo dnf install libva libva-utils intel-media-driver intel-gpu-tools
+
+Need to use 
+howdy-beta - principis - Fedora Copr
+instead of non-howdy stable, it uses python2.x and cannot work with fedora 40
+
+also, need to install by following the web page below 
+
+https://copr.fedorainfracloud.org/coprs/principis/howdy-beta/
