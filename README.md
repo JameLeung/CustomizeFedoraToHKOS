@@ -97,6 +97,29 @@ for the SDDM video modification, found the QtMultimedia need to do quite a lot o
 Need to change the Main.Qml to make it comptible
 the source is uploaded for reference
 
+To change the logo for KDE
+in file
 
+sudo vi /etc/xdg/kcm-about-distrorc
 
+[General]
+LogoPath=/usr/share/pixmaps/hklogo5.png
+Name=HKOS
+Website=https://www.linkedin.com/in/jame-l-a2320323/
+Version=40.1
 
+To change logot in GNOME
+sudo mkdir -p /usr/share/icons/hicolor/128x128/apps
+sudo cp /path/to/your-logo.svg /usr/share/icons/hicolor/128x128/apps/hkoso.svg
+sudo gtk-update-icon-cache /usr/share/icons/hicolor
+
+sudo nano /etc/os-release
+
+NAME="HKOS"
+VERSION="40.1"
+ID=hkos
+PRETTY_NAME="HKOS 40.1"
+LOGO=hkos
+HOME_URL="https://www.linkedin.com/in/jame-l-a2320323/"
+
+sudo chmod 644 /usr/share/icons/hicolor/128x128/apps/hkos.svg
