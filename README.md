@@ -283,3 +283,35 @@ instead of non-howdy stable, it uses python2.x and cannot work with fedora 40
 also, need to install by following the web page below 
 
 https://copr.fedorainfracloud.org/coprs/principis/howdy-beta/
+
+need to steps as below
+
+change the device
+sudo howdy config 
+change devicepath
+
+
+sudo howdy add -U j
+sudo howdy test 
+
+need to change the /etc/pam.d/sudo config
+
+auth       required   pam_howdy.so
+auth       required   pam_unix.so
+
+so it need to d facial + password to trigger sudo 
+
+add this in /etc/pam.d/kde
+auth       sufficient   pam_howdy.so
+
+add this in /etc/pam.d/sddm
+auth     [success=done ignore=ignore default=bad] pam_selinux_permit.so
+auth        sufficient     pam_howdy.so
+
+add this in gdm-password
+auth     [success=done ignore=ignore default=bad] pam_selinux_permit.so
+
+
+
+
+
